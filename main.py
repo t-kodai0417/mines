@@ -30,10 +30,19 @@ def create_mines_list(def_len:int,boom_len:int):
 
 
 
-
-@bot.command(name="casino", description="casino test")
+@bot.command(
+    name="casino", 
+    description="casino test", 
+    options= [
+        interactions.Option(
+            type=interactions.OptionType.INTEGER,
+            name="bomb",
+            description="爆弾の数", 
+            required=True
+        ),
+    ],
+)
 async def casino_test(ctx: CommandContext):
-    
     guild = await ctx.get_guild()
     guild_id = guild.id
     channel = await ctx.get_channel()
@@ -62,7 +71,7 @@ async def casino_test(ctx: CommandContext):
     
     message_ = await ctx.send(components=button_send)
     message_id = message_.id
-    print(message_id)
+    
     button_opt_temp=button_opt
     kakuritu=create_mines_list(25,2)
   
