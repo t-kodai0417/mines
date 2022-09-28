@@ -16,9 +16,10 @@ bot = interactions.Client(token=bot_token,intents=interactions.Intents.DEFAULT|i
 setup(bot)
 
 class bairitu:
-  _1=[0,1.03,1.08,1.12,1.18,1.24,1.3,1.37,1.46,1.55,1.65,1.77,1.9,2.06,2.25,2.47,2.75,3.09,3.54,4.12,4.95,6.19,8.25,12.38,24.75]
-  _2=[0,1.08,1.17,1.29,1.41,1.56,1.74,1.64,2.18,2.47,2.83,3.26,3.81,4.5,5.4,6.6,8.25,10.61,14.14,19.8,29.7,49.5,99,297]
-  _3=[0,1.12,1.29,1.48,1.71,2,2.35,2.79,3.35,4.07,5,6.26,7.96,10.35,13.8,18.97,27.11,40.66,65.06,113.85,227.7,569.25,2277]
+  _1=[1,1.03,1.08,1.12,1.18,1.24,1.3,1.37,1.46,1.55,1.65,1.77,1.9,2.06,2.25,2.47,2.75,3.09,3.54,4.12,4.95,6.19,8.25,12.38,24.75]
+  _2=[1,1.08,1.17,1.29,1.41,1.56,1.74,1.64,2.18,2.47,2.83,3.26,3.81,4.5,5.4,6.6,8.25,10.61,14.14,19.8,29.7,49.5,99,297]
+  _3=[1,1.12,1.29,1.48,1.71,2,2.35,2.79,3.35,4.07,5,6.26,7.96,10.35,13.8,18.97,27.11,40.66,65.06,113.85,227.7,569.25,2277]
+  _4=[1,1.18,1.41,1.71,2.09,2.58,3.23,4.09,5.26,6.88,9.17,12.51,17.52,25.3,37.95,59.64,99.39,178.91,357.81,834.9,2504.7,12523.5]
 
 
 
@@ -81,7 +82,8 @@ async def casino_test(ctx: CommandContext):
     
     button_opt_temp=button_opt
     kakuritu=create_mines_list(25,2)
-  
+    press_len=0
+    embed=interactions.Embed(title="Info",color=0xafeee,description=f"倍率:{bairitu._2[press_len]}\n1000円賭けた場合:{bairitu._2[press_len]*1000}")
     selected_data=[]
     while True:
       async def check(msg):
@@ -92,6 +94,7 @@ async def casino_test(ctx: CommandContext):
       except asyncio.TimeoutError:
           return
       await select_wait.send("a",ephemeral=True)
+      press_len+=1
       if kakuritu[int(select_wait.custom_id)]==1:
         button_opt_temp[int(select_wait.custom_id)]=interactions.Button(
             style=interactions.ButtonStyle.DANGER,
