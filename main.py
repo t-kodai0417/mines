@@ -50,7 +50,7 @@ def create_mines_list(def_len:int,boom_len:int):
         ),
     ],
 )
-async def casino_test(ctx: CommandContext):
+async def casino_test(ctx: CommandContext,bomb:int):
     guild = await ctx.get_guild()
     guild_id = guild.id
     channel = await ctx.get_channel()
@@ -76,14 +76,14 @@ async def casino_test(ctx: CommandContext):
     
       
     
-    
-    message_ = await ctx.send(components=button_send)
+    embed=interactions.Embed(title="Info",color=0xafeee,description=f"倍率:{bairitu._2[press_len]}\n1000円賭けた場合:{bairitu._2[press_len]*1000}")
+    message_ = await ctx.send(components=button_send,embeds=embed)
     message_id = message_.id
     
     button_opt_temp=button_opt
-    kakuritu=create_mines_list(25,2)
+    kakuritu=create_mines_list(25,bomb)
     press_len=0
-    embed=interactions.Embed(title="Info",color=0xafeee,description=f"倍率:{bairitu._2[press_len]}\n1000円賭けた場合:{bairitu._2[press_len]*1000}")
+    
     selected_data=[]
     while True:
       async def check(msg):
@@ -94,7 +94,6 @@ async def casino_test(ctx: CommandContext):
       except asyncio.TimeoutError:
           return
       await select_wait.send("a",ephemeral=True)
-      press_len+=1
       if kakuritu[int(select_wait.custom_id)]==1:
         button_opt_temp[int(select_wait.custom_id)]=interactions.Button(
             style=interactions.ButtonStyle.DANGER,
@@ -150,6 +149,7 @@ async def casino_test(ctx: CommandContext):
         await message_.edit(components=button_send)
         return
       else:
+        press_len+=1
         button_opt_temp[int(select_wait.custom_id)]=interactions.Button(
                 style=interactions.ButtonStyle.SUCCESS,
                 label="", 
@@ -165,7 +165,8 @@ async def casino_test(ctx: CommandContext):
           temp_data.append(button_opt_temp[kaisuu])
           kaisuu+=1
         button_send.append(interactions.ActionRow(components=temp_data))
-      await message_.edit(components=button_send)
+      embed=interactions.Embed(title="Info",color=0xafeee,description=f"倍率:{bairitu._2[press_len]}\n1000円賭けた場合:{bairitu._2[press_len]*1000}")
+      await message_.edit(components=button_send,embeds=embed)
 
 
 
