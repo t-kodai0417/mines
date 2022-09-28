@@ -15,6 +15,13 @@ bot_token=os.getenv("token")
 bot = interactions.Client(token=bot_token,intents=interactions.Intents.DEFAULT|interactions.Intents.GUILD_MESSAGE_CONTENT)
 setup(bot)
 
+class bairitu:
+  _1=[0,1.03,1.08,1.12,1.18,1.24,1.3,1.37,1.46,1.55,1.65,1.77,1.9,2.06,2.25,2.47,2.75,3.09,3.54,4.12,4.95,6.19,8.25,12.38,24.75]
+  _2=[0,1.08,1.17,1.29,1.41,1.56,1.74,1.64,2.18,2.47,2.83,3.26,3.81,4.5,5.4,6.6,8.25,10.61,14.14,19.8,29.7,49.5,99,297]
+  _3=[0,1.12,1.29,1.48,1.71,2,2.35,2.79,3.35,4.07,5,6.26,7.96,10.35,13.8,18.97,27.11,40.66,65.06,113.85,227.7,569.25,2277]
+
+
+
 
 def create_mines_list(def_len:int,boom_len:int):
   import random
