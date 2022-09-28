@@ -146,7 +146,8 @@ async def casino_test(ctx: CommandContext,bomb:int):
             temp_data.append(button_last[kaisuu])
             kaisuu+=1
           button_send.append(interactions.ActionRow(components=temp_data))
-        await message_.edit(components=button_send)
+        embed=interactions.Embed(title="あなたの負け！",color=0xff0000,description=f"倍率:{bairitu._2[press_len]}\n1000円賭けた場合:{bairitu._2[press_len]*1000}")
+        await message_.edit(components=button_send,embeds=embed)
         return
       else:
         press_len+=1
