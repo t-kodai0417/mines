@@ -1,4 +1,9 @@
 # -*- coding: utf-8 -*-
+"""
+Developed by Kodai.
+Twitter:@k0d08
+"""
+
 import interactions
 from interactions.ext.wait_for import wait_for,setup
 from interactions.ext.get import get
